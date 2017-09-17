@@ -1,3 +1,4 @@
+cordova.define("cordova-plugin-camera.camera", function(require, exports, module) {
 /*
  *
  * Licensed to the Apache Software Foundation (ASF) under one
@@ -148,9 +149,10 @@ cameraExport.getPicture = function (successCallback, errorCallback, options) {
     var saveToPhotoAlbum = !!options.saveToPhotoAlbum;
     var popoverOptions = getValue(options.popoverOptions, null);
     var cameraDirection = getValue(options.cameraDirection, Camera.Direction.BACK);
+    var multiple = getValue(options.multiple, false);
 
     var args = [quality, destinationType, sourceType, targetWidth, targetHeight, encodingType,
-        mediaType, allowEdit, correctOrientation, saveToPhotoAlbum, popoverOptions, cameraDirection];
+        mediaType, allowEdit, correctOrientation, saveToPhotoAlbum, popoverOptions, cameraDirection, multiple];
 
     exec(successCallback, errorCallback, 'Camera', 'takePicture', args);
     // XXX: commented out
@@ -183,3 +185,5 @@ cameraExport.cleanup = function (successCallback, errorCallback) {
 };
 
 module.exports = cameraExport;
+
+});
